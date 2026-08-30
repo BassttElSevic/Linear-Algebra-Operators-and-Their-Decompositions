@@ -1,20 +1,22 @@
 # 线性代数：抽象结构 —— 算子及其分解
 
+
+
 > 一本讲「有限维向量空间上的**算子**如何被分解」的自编教材。
 > Markdown 写内容，Python 脚本转成 LaTeX，XeLaTeX 排成 117 页的 PDF。
 
-| | |
-| --- | --- |
-| 撰写（一作） | **夜航未西飞** · [github.com/Singularity-baakaka](https://github.com/Singularity-baakaka) |
-| 校对、LaTeX 排版（二作） | **阿酒** · Basstt ElSevic · [github.com/BassttElSevic](https://github.com/BassttElSevic) |
-| 成品 | [`output/线性代数-算子及其分解.pdf`](output/) · 117 页 · B5 开本 |
-| 许可 | [MIT](LICENSE)（正文与代码同时适用） |
+| | | |
+| --- | --- | --- |
+| 撰写（一作） | **夜航未西飞** · [github.com/Singularity-baakaka](https://github.com/Singularity-baakaka) | <img width="460" height="460" alt="图片" src="https://github.com/user-attachments/assets/50dd6367-40a6-4086-b8ce-ae4a5e34806f" /> |
+| 校对、LaTeX 排版（二作） | **阿酒** · Basstt ElSevic · [github.com/BassttElSevic](https://github.com/BassttElSevic) | <img width="500" height="500" alt="图片" src="https://github.com/user-attachments/assets/c5a5ea84-8b31-4641-81b1-cea08a739ba7" /> |
+| 成品 | [`output/线性代数-算子及其分解.pdf`](output/) · 117 页 · B5 开本 | |
+| 许可 | [MIT](LICENSE)（正文与代码同时适用） | |
 
 ---
 
 ## 一、这本书是什么
 
-这不是一本从行列式讲起的计算型线性代数书，而是**只讲一件事**的专题讲义：
+这不是一本从行列式讲起的计算型线性代数书，而是专题讲义：
 
 > 给定一个算子 $T:V\to V$，能不能找到一组好基，把它拆成互不干扰的简单部分？
 
@@ -238,5 +240,10 @@ latexmk 未必能察觉需要重跑，所以 Makefile 里是老老实实跑三�
 ## 七、许可
 
 [MIT](LICENSE) © 2026 Singularity-baakaka（夜航未西飞）、Basstt ElSevic（阿酒）。
+
+## Choose Life
+
+<img width="1080" height="723" alt="ChooseLife" src="https://github.com/user-attachments/assets/00d99cb5-e325-4cf0-b4d6-534a428eb9d1" />
+
 正文、LaTeX 模板、转换脚本与编译出的 PDF 都在此许可之下：可以自由使用、修改、
 再分发，包括商业用途，只需保留版权声明与许可声明。
