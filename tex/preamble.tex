@@ -122,6 +122,7 @@
 % PDF 元信息里含逗号与中文，必须放在 \hypersetup 里而不是宏包选项里
 \hypersetup{
   pdftitle    = {线性代数：抽象结构 —— 算子及其分解},
+  pdfauthor   = {夜航未西飞（著）; 阿酒（校对与排版）},
   pdfsubject  = {线性代数讲义},
   pdfkeywords = {线性代数; 算子; 不变子空间; Jordan 标准型; 谱定理; 奇异值分解},
 }
@@ -129,14 +130,17 @@
 % -------------------------------------------------------------------------
 % 7. 章 / 节 / 小节标题样式
 % -------------------------------------------------------------------------
-% 章：深蓝横条给出章序 + 大标题 + 双色横线
+% 章：深蓝圆角横条给出章序 + 大标题 + 双色横线
 % \CTEXthechapter 与目录中的“第一章”写法保持一致
 \providecommand{\CTEXthechapter}{第\,\thechapter\,章}
+\newcommand{\jchapbar}[1]{%
+  \tcbox[nobeforeafter, tcbox width = forced left, width = \linewidth,
+         colback = mainblue, colframe = mainblue, coltext = white,
+         boxrule = 0pt, arc = 3pt, left = 7pt, right = 7pt, top = 3pt, bottom = 3pt]{%
+    \sffamily\bfseries\normalsize #1}}
 \titleformat{\chapter}[display]
   {\normalfont\sffamily\raggedright}
-  {\colorbox{mainblue}{\parbox{\dimexpr\linewidth-2\fboxsep}{%
-     \color{white}\sffamily\bfseries\normalsize
-     \strut \CTEXthechapter}}}
+  {\jchapbar{\CTEXthechapter}}
   {6pt}
   {\huge\bfseries\color{inkblue}}
   [{\vspace{4pt}{\color{accent}\titlerule[1.1pt]}%
@@ -223,7 +227,7 @@
 
 \tcbset{
   jstatement/.style = {
-    enhanced, breakable, sharp corners,
+    enhanced, breakable, arc = 3pt,
     parbox = false,
     boxrule = 0.6pt,
     leftrule = 3pt,
@@ -277,7 +281,7 @@
 
 % 要点（原 Markdown 的引用块）
 \newtcolorbox{jinsight}{
-  enhanced, breakable, sharp corners,
+  enhanced, breakable, arc = 3pt,
   parbox = false,
   boxrule = 0.6pt, leftrule = 3pt,
   colback = insightgold!5!white,
@@ -294,7 +298,7 @@
 
 % 理解 / 构造目标一类的旁注
 \newtcolorbox{jidea}[1]{
-  enhanced, breakable, sharp corners,
+  enhanced, breakable, arc = 3pt,
   parbox = false,
   boxrule = 0.6pt, leftrule = 3pt,
   colback = ideapurple!4!white,
@@ -312,7 +316,7 @@
 
 % 每一“部分”的导读：整页宽的大盒子
 \newtcolorbox{partintro}[1]{
-  enhanced, breakable, sharp corners,
+  enhanced, breakable, arc = 3.5pt,
   parbox = false,
   boxrule = 0.8pt, leftrule = 4pt,
   colback = mainblue!4!white,

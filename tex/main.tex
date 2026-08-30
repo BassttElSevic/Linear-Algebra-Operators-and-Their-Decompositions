@@ -12,7 +12,10 @@
 \newcommand{\bookseries}{线性代数讲义\; \textbullet\; 抽象结构}
 \newcommand{\booktitleA}{算子}
 \newcommand{\booktitleB}{及其分解}
-\newcommand{\bookauthor}{Basstt\_ElSevic}
+\newcommand{\authorone}{夜航未西飞}
+\newcommand{\authoronerole}{著}
+\newcommand{\authortwo}{阿酒}
+\newcommand{\authortworole}{校对\;\textbullet\;\LaTeX{} 排版}
 \newcommand{\bookdate}{\the\year 年\ \the\month 月}
 
 \begin{document}
@@ -50,7 +53,10 @@
 
 \vfill
 \begin{flushleft}
-  {\sffamily\large\color{inkblue}\bookauthor}\\[3mm]
+  {\sffamily\bfseries\Large\color{mainblue}\authorone}%
+  \hspace{0.9em}{\small\color{pagegray}\authoronerole}\\[3.2mm]
+  {\sffamily\large\color{mainblue!85!black}\authortwo}%
+  \hspace{0.9em}{\small\color{pagegray}\authortworole}\\[6mm]
   {\sffamily\color{pagegray}\bookdate}
 \end{flushleft}
 \end{titlepage}
@@ -63,9 +69,13 @@
 \begin{flushleft}
 \small\color{black!75}
 \textsf{\textbf{\color{inkblue}关于这本讲义}}\\[4pt]
-本书是作者自编的线性代数笔记，主题是有限维向量空间上的\emph{算子}以及它的各种分解：
+本书的主题是有限维向量空间上的\emph{算子}以及它的各种分解：
 从不变子空间出发，经由特征结构、上三角化、对角化、Jordan 标准型与实向量空间的复化，
 再进入内积空间，讨论伴随、正规算子、自伴算子、谱定理，最后到极分解与奇异值分解。\\[10pt]
+
+\textsf{\textbf{\color{inkblue}分工}}\\[4pt]
+\authorone{}：讲义正文的构思与撰写。\\
+\authortwo{}：后期校对、\LaTeX{} 排版与构建流程。\\[10pt]
 
 \textsf{\textbf{\color{inkblue}排版说明}}\\[4pt]
 正文由 Markdown 源稿经 \texttt{tools/md2tex.py} 自动转换为 \LaTeX{}，
