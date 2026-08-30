@@ -1,0 +1,333 @@
+%% ==========================================================================
+%%  preamble.tex —— 《线性代数：抽象结构 · 算子及其分解》版式定义
+%%  编译引擎：XeLaTeX（需要 ctex + tcolorbox + Libertinus + Noto CJK）
+%% ==========================================================================
+
+% -------------------------------------------------------------------------
+% 1. 页面尺寸（B5 开本，接近国内数学教材手感）
+% -------------------------------------------------------------------------
+\usepackage[
+  paperwidth  = 176mm,
+  paperheight = 250mm,
+  inner       = 21mm,
+  outer       = 17mm,
+  top         = 22mm,
+  bottom      = 24mm,
+  headheight  = 14pt,
+  headsep     = 6mm,
+  footskip    = 11mm,
+]{geometry}
+
+% -------------------------------------------------------------------------
+% 2. 字体：西文 Libertinus，数学 Libertinus Math，中文 Noto Serif/Sans CJK SC
+% -------------------------------------------------------------------------
+\usepackage{fontspec}
+\usepackage{unicode-math}
+
+\setmainfont{LibertinusSerif}[
+  Extension      = .otf,
+  UprightFont    = *-Regular,
+  ItalicFont     = *-Italic,
+  BoldFont       = *-Bold,
+  BoldItalicFont = *-BoldItalic,
+  Numbers        = OldStyle,
+  Ligatures      = TeX,
+]
+\setsansfont{LibertinusSans}[
+  Extension      = .otf,
+  UprightFont    = *-Regular,
+  ItalicFont     = *-Italic,
+  BoldFont       = *-Bold,
+  Ligatures      = TeX,
+]
+\setmonofont{LibertinusMono-Regular}[Extension = .otf, Scale = MatchLowercase]
+\setmathfont{LibertinusMath-Regular.otf}
+% 公式里的数字用等高数字，正文用老式数字
+\newfontfamily\liningfont{LibertinusSerif}[Extension=.otf, UprightFont=*-Regular,
+  BoldFont=*-Bold, Numbers=Lining]
+
+\xeCJKsetup{CJKmath = true}
+\setCJKmainfont{Noto Serif CJK SC}[
+  BoldFont       = Noto Serif CJK SC Bold,
+  ItalicFont     = Noto Serif CJK SC,
+  ItalicFeatures = {FakeSlant = 0.18},
+]
+\setCJKsansfont{Noto Sans CJK SC}[BoldFont = Noto Sans CJK SC Bold]
+\setCJKmonofont{Noto Sans Mono CJK SC}
+\newCJKfontfamily\cjkhei{Noto Sans CJK SC}[BoldFont = Noto Sans CJK SC Bold]
+\newCJKfontfamily\cjklight{Noto Serif CJK SC}[BoldFont = Noto Serif CJK SC Bold]
+
+% -------------------------------------------------------------------------
+% 3. 数学、表格、图形等基础宏包
+% -------------------------------------------------------------------------
+\usepackage{amsmath, mathtools}   % 注意：unicode-math 已提供全部 AMS 符号，不能再载 amssymb
+\usepackage{booktabs, array}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{pifont}
+\usepackage{microtype}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{theorems, breakable, skins}
+\usepackage{titlesec}
+\usepackage{titletoc}
+\usepackage{fancyhdr}
+\usepackage{emptypage}
+
+% -------------------------------------------------------------------------
+% 4. 配色方案（沉静的靛蓝为主色，四种辅色区分不同类型的知识块）
+% -------------------------------------------------------------------------
+\usepackage{xcolor}
+\definecolor{inkblue}{HTML}{16324F}      % 主色：章节标题
+\definecolor{accent}{HTML}{2C5F8A}       % 辅色：节号、页眉细线
+\definecolor{defnblue}{HTML}{1C6E8C}     % 定义
+\definecolor{thmred}{HTML}{9B2C2C}       % 定理
+\definecolor{propgreen}{HTML}{1F6F54}    % 命题
+\definecolor{proofgray}{HTML}{4A5568}    % 证明思路
+\definecolor{insightgold}{HTML}{8A6100}  % 要点
+\definecolor{ideapurple}{HTML}{5B4B8A}   % 理解
+\definecolor{pagegray}{HTML}{6B7280}
+
+% -------------------------------------------------------------------------
+% 5. 段落、行距、标点
+% -------------------------------------------------------------------------
+\linespread{1.30}
+\setlength{\parskip}{0.28em plus 0.1em minus 0.05em}
+\setlength{\parindent}{2\ccwd}
+\setlength{\emergencystretch}{1.5em}
+\raggedbottom
+\predisplaypenalty=0        % 允许在行间公式前分页，避免大片留白
+\postdisplaypenalty=0
+\setlength{\abovedisplayskip}{7pt plus 2pt minus 2pt}
+\setlength{\belowdisplayskip}{7pt plus 2pt minus 2pt}
+\setlength{\abovedisplayshortskip}{3pt plus 2pt}
+\setlength{\belowdisplayshortskip}{5pt plus 2pt}
+
+% -------------------------------------------------------------------------
+% 6. 超链接与 PDF 书签
+% -------------------------------------------------------------------------
+\usepackage[
+  colorlinks = true,
+  linkcolor  = accent,
+  citecolor  = accent,
+  urlcolor   = accent,
+  linktoc    = all,
+  bookmarksnumbered  = true,
+  bookmarksopen      = true,
+  bookmarksopenlevel = 1,
+]{hyperref}
+\usepackage{bookmark}
+% PDF 元信息里含逗号与中文，必须放在 \hypersetup 里而不是宏包选项里
+\hypersetup{
+  pdftitle    = {线性代数：抽象结构 —— 算子及其分解},
+  pdfsubject  = {线性代数讲义},
+  pdfkeywords = {线性代数; 算子; 不变子空间; Jordan 标准型; 谱定理; 奇异值分解},
+}
+
+% -------------------------------------------------------------------------
+% 7. 章 / 节 / 小节标题样式
+% -------------------------------------------------------------------------
+% 章：深色横条给出章序 + 大标题 + 双色横线
+% \CTEXthechapter 与目录中的“第一章”写法保持一致
+\providecommand{\CTEXthechapter}{第\,\thechapter\,章}
+\titleformat{\chapter}[display]
+  {\normalfont\sffamily\raggedright}
+  {\colorbox{inkblue}{\parbox{\dimexpr\linewidth-2\fboxsep}{%
+     \color{white}\sffamily\bfseries\normalsize
+     \strut \CTEXthechapter}}}
+  {6pt}
+  {\huge\bfseries\color{inkblue}}
+  [{\vspace{4pt}{\color{accent}\titlerule[1.1pt]}%
+     \vspace{1.4pt}{\color{accent!45}\titlerule[0.5pt]}}]
+\titlespacing*{\chapter}{0pt}{4pt}{22pt}
+
+\titleformat{name=\chapter,numberless}[display]
+  {\normalfont\sffamily\raggedright}
+  {}
+  {0pt}
+  {\huge\bfseries\color{inkblue}}
+  [{\vspace{4pt}{\color{accent}\titlerule[1.1pt]}%
+     \vspace{1.4pt}{\color{accent!45}\titlerule[0.5pt]}}]
+
+% 节：色条 + 编号
+\titleformat{\section}[hang]
+  {\normalfont\sffamily\large\bfseries\color{inkblue}}
+  {\raisebox{-0.08em}{\color{accent}\rule{2.6pt}{1.05em}}\hspace{0.55em}%
+   \color{accent}\thesection\hspace{0.1em}}
+  {0.6em}{}
+\titlespacing*{\section}{0pt}{1.7ex plus .3ex}{0.9ex}
+
+\titleformat{\subsection}[hang]
+  {\normalfont\sffamily\bfseries\color{accent!85!black}}
+  {\thesubsection}{0.55em}{}
+\titlespacing*{\subsection}{0pt}{1.3ex plus .2ex}{0.6ex}
+
+% 部分（\part）：整页的大标题，编号用汉字
+\renewcommand{\thepart}{\chinese{part}}
+\titleformat{\part}[display]
+  {\normalfont\sffamily\centering}
+  {{\color{accent!45}\rule{0.22\linewidth}{0.9pt}}\\[10pt]
+   \color{accent}\Large 第\,\thepart\,部分}
+  {14pt}
+  {\vspace{2pt}\color{inkblue}\Huge\bfseries}
+  [{\vspace{12pt}{\color{accent}\rule{0.42\linewidth}{1.1pt}}}]
+\titlespacing*{\part}{0pt}{80pt}{28pt}
+
+% -------------------------------------------------------------------------
+% 8. 页眉页脚
+% -------------------------------------------------------------------------
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE]{\small\sffamily\color{pagegray}\leftmark}
+\fancyhead[RO]{\small\sffamily\color{pagegray}\rightmark}
+\fancyfoot[LE,RO]{\small\sffamily\color{accent}\liningfont\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\headrule}{{\color{accent!45}\hrule height 0.4pt}\vspace{1pt}}
+\fancypagestyle{plain}{%
+  \fancyhf{}%
+  \renewcommand{\headrule}{}%
+  \fancyfoot[LE,RO]{\small\sffamily\color{accent}\liningfont\thepage}}
+\renewcommand{\chaptermark}[1]{\markboth{\CTEXthechapter\quad #1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\quad #1}}
+
+% -------------------------------------------------------------------------
+% 9. 目录样式
+% -------------------------------------------------------------------------
+\renewcommand{\contentsname}{目\hspace{1em}录}
+\titlecontents{part}[0pt]
+  {\addvspace{18pt}\sffamily\bfseries\color{inkblue}\large}
+  {\contentspush{第\,\thecontentslabel\,部分\quad}}{}{}
+\titlecontents{chapter}[0pt]
+  {\addvspace{7pt}\sffamily\bfseries\color{inkblue}}
+  {\contentspush{\thecontentslabel\enspace}}{}
+  {\hfill\color{accent}\liningfont\contentspage}
+\titlecontents{section}[2.9em]
+  {\addvspace{1pt}\small}
+  {\contentslabel{2.6em}}{\hspace*{-2.6em}}
+  {\titlerule*[0.6pc]{\color{accent!35}.}\color{accent}\liningfont\contentspage}
+\titlecontents{subsection}[5.8em]
+  {\addvspace{0pt}\small\color{black!80}}
+  {\contentslabel{3.1em}}{\hspace*{-3.1em}}
+  {\titlerule*[0.6pc]{\color{accent!25}.}\color{accent!80}\liningfont\contentspage}
+
+% -------------------------------------------------------------------------
+% 10. 知识块：定义 / 定理 / 命题 / 证明思路 / 要点 / 理解 / 部分导读
+% -------------------------------------------------------------------------
+% 盒子内的段落：不缩进，靠空白分段（parbox=false 才能让段设置生效）
+\newcommand{\jboxpar}{\setlength{\parindent}{0pt}\setlength{\parskip}{0.5em plus 0.1em}}
+
+% 统一外观：隐去边框，只留左侧色条 + 极淡底色；三类共用一个“结果”计数器
+\tcbset{
+  jstatement/.style = {
+    enhanced jigsaw, breakable, sharp corners, boxrule = 0pt, frame hidden,
+    parbox = false,
+    left = 10pt, right = 10pt, top = 7pt, bottom = 7pt,
+    before skip = 11pt plus 2pt, after skip = 11pt plus 2pt,
+    fonttitle = \sffamily\bfseries,
+    theorem style = standard,
+    separator sign none,
+    terminator sign none,
+    description delimiters = {\kern-0.42em（}{）},
+    before upper = {\jboxpar},
+  },
+}
+
+\newtcbtheorem[number within = chapter, list inside = jdeflist]{jdefn}{定义}{
+  jstatement,
+  colback = defnblue!5!white,
+  coltitle = defnblue!88!black,
+  borderline west = {2.6pt}{0pt}{defnblue},
+}{def}
+
+\newtcbtheorem[use counter from = jdefn, list inside = jthmlist]{jthm}{定理}{
+  jstatement,
+  colback = thmred!5!white,
+  coltitle = thmred!88!black,
+  borderline west = {2.6pt}{0pt}{thmred},
+}{thm}
+
+\newtcbtheorem[use counter from = jdefn, list inside = jproplist]{jprop}{命题}{
+  jstatement,
+  colback = propgreen!5!white,
+  coltitle = propgreen!88!black,
+  borderline west = {2.6pt}{0pt}{propgreen},
+}{prop}
+
+% 证明思路：无底色，细灰竖线，末尾一个小方块（用 \rule 画，不依赖字体字形）
+\newcommand{\jqed}{\textcolor{proofgray!80}{\rule[0.03em]{0.46em}{0.46em}}}
+\newtcolorbox{jproof}[1]{
+  enhanced jigsaw, breakable, sharp corners, boxrule = 0pt, frame hidden,
+  parbox = false,
+  colback = white,
+  borderline west = {1pt}{0pt}{proofgray!45},
+  left = 9pt, right = 6pt, top = 4pt, bottom = 4pt,
+  before skip = 9pt plus 2pt, after skip = 11pt plus 2pt,
+  fontupper = \small,
+  before upper = {\jboxpar\textcolor{proofgray}{\sffamily\bfseries #1\,}\hspace{0.45em}},
+  after upper  = {\unskip\nobreak\hfill\jqed},
+}
+
+% 要点（原 Markdown 的引用块）
+\newtcolorbox{jinsight}{
+  enhanced jigsaw, breakable, sharp corners, boxrule = 0pt, frame hidden,
+  parbox = false,
+  colback = insightgold!8!white,
+  borderline west = {2.6pt}{0pt}{insightgold!85},
+  left = 10pt, right = 10pt, top = 7pt, bottom = 7pt,
+  before skip = 11pt plus 2pt, after skip = 11pt plus 2pt,
+  before upper = {\jboxpar\textcolor{insightgold!85!black}{\ding{72}\ \sffamily\bfseries 要点\,}\hspace{0.4em}},
+}
+
+% 理解 / 构造目标一类的旁注
+\newtcolorbox{jidea}[1]{
+  enhanced jigsaw, breakable, sharp corners, boxrule = 0pt, frame hidden,
+  parbox = false,
+  colback = ideapurple!5!white,
+  borderline west = {2.6pt}{0pt}{ideapurple!85},
+  left = 10pt, right = 10pt, top = 6pt, bottom = 6pt,
+  before skip = 10pt plus 2pt, after skip = 10pt plus 2pt,
+  fontupper = \small,
+  before upper = {\jboxpar\textcolor{ideapurple!85!black}{\sffamily\bfseries #1\,}\hspace{0.45em}},
+}
+
+% 每一“部分”的导读：整页宽的浅色大盒子
+\newtcolorbox{partintro}[1]{
+  enhanced, breakable, sharp corners,
+  parbox = false,
+  colback = accent!4!white, colframe = accent!35,
+  boxrule = 0.6pt,
+  borderline west = {3pt}{0pt}{accent},
+  left = 14pt, right = 14pt, top = 14pt, bottom = 12pt,
+  before skip = 6pt, after skip = 16pt,
+  fonttitle = \sffamily\bfseries,
+  coltitle = white,
+  colbacktitle = accent,
+  title = {\ #1},
+  before upper = {\jboxpar},
+  attach boxed title to top left = {xshift = 6pt, yshift = -\tcboxedtitleheight/2},
+  boxed title style = {sharp corners, boxrule = 0pt, colback = accent},
+}
+
+% -------------------------------------------------------------------------
+% 11. 列表样式
+% -------------------------------------------------------------------------
+\newcommand{\jsquare}{\textcolor{accent}{\raisebox{0.22em}{\rule{0.42em}{0.42em}}}}
+\newlist{jitem}{itemize}{3}
+\setlist[jitem]{label = \jsquare,
+  leftmargin = 1.9em, itemsep = 1pt, topsep = 4pt, parsep = 2pt}
+\newlist{jenum}{enumerate}{3}
+\setlist[jenum]{label = {\textcolor{accent}{\sffamily\bfseries\arabic*.}},
+  leftmargin = 2.1em, itemsep = 1pt, topsep = 4pt, parsep = 2pt}
+
+% -------------------------------------------------------------------------
+% 12. 常用数学记号
+% -------------------------------------------------------------------------
+\newcommand{\FF}{\mathbb{F}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\CC}{\mathbb{C}}
+\DeclareMathOperator{\spann}{span}
+\DeclareMathOperator{\diag}{diag}
+
+% 扉页上用的装饰线
+\newcommand{\titlerulebig}[1]{{\color{#1}\rule{\linewidth}{1.2pt}}}

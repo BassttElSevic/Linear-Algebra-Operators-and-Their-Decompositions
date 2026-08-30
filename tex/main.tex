@@ -1,0 +1,142 @@
+%% ==========================================================================
+%%  《线性代数：抽象结构 —— 算子及其分解》
+%%
+%%  编译： xelatex main.tex （建议用 latexmk -xelatex，或在上层目录 make）
+%%  正文： 由 tools/md2tex.py 从 Markdown 讲义自动生成，见 body.tex
+%% ==========================================================================
+\documentclass[UTF8, fontset=none, 11pt, twoside, openright]{ctexbook}
+
+\input{preamble}
+
+% ---- 书名、作者等元信息（改这里即可）-------------------------------------
+\newcommand{\bookseries}{线性代数讲义\; \textbullet\; 抽象结构}
+\newcommand{\booktitleA}{算子}
+\newcommand{\booktitleB}{及其分解}
+\newcommand{\bookauthor}{Basstt\_ElSevic}
+\newcommand{\bookdate}{\the\year 年\ \the\month 月}
+
+\begin{document}
+
+% =========================================================================
+%  扉页
+% =========================================================================
+\begin{titlepage}
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  % 左侧竖向色带
+  \fill[inkblue] (current page.north west) rectangle
+    ($(current page.south west) + (16mm, 0)$);
+  \fill[accent] ($(current page.north west) + (16mm, 0)$) rectangle
+    ($(current page.south west) + (19mm, 0)$);
+  % 右上角小方块装饰
+  \fill[accent!25] ($(current page.north east) + (-30mm, -18mm)$) rectangle
+    ($(current page.north east) + (-24mm, -24mm)$);
+  \fill[thmred!60] ($(current page.north east) + (-22mm, -18mm)$) rectangle
+    ($(current page.north east) + (-16mm, -24mm)$);
+\end{tikzpicture}%
+\vspace*{38mm}
+
+\begin{flushleft}
+  {\sffamily\large\color{accent}\bookseries}\\[2mm]
+  {\color{accent!45}\rule{0.40\linewidth}{0.9pt}}\\[10mm]
+  {\sffamily\bfseries\color{inkblue}\fontsize{46}{52}\selectfont \booktitleA}\\[4mm]
+  {\sffamily\bfseries\color{inkblue}\fontsize{32}{38}\selectfont \booktitleB}\\[12mm]
+  {\color{inkblue}\rule{0.62\linewidth}{1.4pt}}\\[7mm]
+  {\large\color{black!72}
+   不变子空间 \quad\textbullet\quad 上三角化与对角化\\[2.4mm]
+   Jordan 标准型 \quad\textbullet\quad 实向量空间的复化\\[2.4mm]
+   伴随与谱定理 \quad\textbullet\quad 极分解与奇异值分解}
+\end{flushleft}
+
+\vfill
+\begin{flushleft}
+  {\sffamily\large\color{inkblue}\bookauthor}\\[3mm]
+  {\sffamily\color{pagegray}\bookdate}
+\end{flushleft}
+\end{titlepage}
+
+% =========================================================================
+%  版权/说明页
+% =========================================================================
+\thispagestyle{empty}
+\null\vfill
+\begin{flushleft}
+\small\color{black!75}
+\textsf{\textbf{\color{inkblue}关于这本讲义}}\\[4pt]
+本书是作者自编的线性代数笔记，主题是有限维向量空间上的\emph{算子}以及它的各种分解：
+从不变子空间出发，经由特征结构、上三角化、对角化、Jordan 标准型与实向量空间的复化，
+再进入内积空间，讨论伴随、正规算子、自伴算子、谱定理，最后到极分解与奇异值分解。\\[10pt]
+
+\textsf{\textbf{\color{inkblue}排版说明}}\\[4pt]
+正文由 Markdown 源稿经 \texttt{tools/md2tex.py} 自动转换为 \LaTeX{}，
+用 XeLaTeX 编译；西文字体为 Libertinus，公式字体为 Libertinus Math，
+中文字体为思源宋体 / 思源黑体（Noto Serif~/~Sans CJK SC）。\\[10pt]
+
+\textsf{\textbf{\color{inkblue}版本}}\\[4pt]
+\bookdate 编译。源码与修订历史由 Git 管理。
+\end{flushleft}
+\vspace*{18mm}
+
+% =========================================================================
+%  前置部分：体例说明 + 目录
+% =========================================================================
+\frontmatter
+\pagestyle{fancy}
+
+\chapter*{阅读指引：本书的体例}
+\addcontentsline{toc}{chapter}{阅读指引：本书的体例}
+\markboth{阅读指引}{阅读指引}
+
+全书用颜色区分四类内容，正文中的每一个色块都可以单独阅读：
+
+\begin{jdefn*}{定义框}{}
+青蓝色块给出概念的定义，以及为了让定义站得住脚所需要的最少解释。
+\end{jdefn*}
+
+\begin{jthm*}{定理框}{}
+暗红色块给出定理。定理只陈述结论；论证放在紧随其后的灰色证明块里。
+\end{jthm*}
+
+\begin{jprop*}{命题框}{}
+墨绿色块给出性质、刻画与推论——它们通常是定理的零件，或定义的直接后果。
+\end{jprop*}
+
+\begin{jproof}{证明思路}
+灰色竖线标出的段落是证明或证明思路。本书里许多证明只给思路：
+先说清楚"为什么必须这样做"，再补细节。段末的小方块表示论证结束。
+\end{jproof}
+
+\begin{jidea}{理解}
+紫色块是对刚才那段形式化内容的翻译，回答"这件事到底在说什么"。
+\end{jidea}
+
+\begin{jinsight}
+金色块是一章或一节的要点：如果只记一句话，就记这一句。
+\end{jinsight}
+
+未加色块的部分是叙述性的正文，负责把这些结论串成一条线。
+每一"部分"的开头都有一页蓝色导读，说明该部分研究什么、用到哪些结构。
+
+\cleardoublepage
+\tableofcontents
+
+% =========================================================================
+%  正文
+% =========================================================================
+\mainmatter
+\input{body}
+
+% =========================================================================
+%  后置部分：定理与定义一览
+% =========================================================================
+\backmatter
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{定义、定理与命题一览}
+\markboth{定义、定理与命题一览}{定义、定理与命题一览}
+\chapter*{定义、定理与命题一览}
+\tcblistof[\section*]{jdeflist}{定义}
+\tcblistof[\section*]{jthmlist}{定理}
+\tcblistof[\section*]{jproplist}{命题}
+
+\end{document}
