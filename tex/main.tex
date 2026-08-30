@@ -13,8 +13,10 @@
 \newcommand{\booktitleA}{算子}
 \newcommand{\booktitleB}{及其分解}
 \newcommand{\authorone}{夜航未西飞}
+\newcommand{\authoronehandle}{github.com/Singularity-baakaka}
 \newcommand{\authoronerole}{著}
-\newcommand{\authortwo}{阿酒}
+\newcommand{\authortwo}{阿酒\;\textbullet\;Basstt ElSevic}
+\newcommand{\authortwohandle}{github.com/BassttElSevic}
 \newcommand{\authortworole}{校对\;\textbullet\;\LaTeX{} 排版}
 \newcommand{\bookdate}{\the\year 年\ \the\month 月}
 
@@ -54,9 +56,11 @@
 \vfill
 \begin{flushleft}
   {\sffamily\bfseries\Large\color{mainblue}\authorone}%
-  \hspace{0.9em}{\small\color{pagegray}\authoronerole}\\[3.2mm]
+  \hspace{0.9em}{\small\color{pagegray}\authoronerole}\\[1mm]
+  {\small\color{accent!80}\texttt{\authoronehandle}}\\[4.2mm]
   {\sffamily\large\color{mainblue!85!black}\authortwo}%
-  \hspace{0.9em}{\small\color{pagegray}\authortworole}\\[6mm]
+  \hspace{0.9em}{\small\color{pagegray}\authortworole}\\[1mm]
+  {\small\color{accent!80}\texttt{\authortwohandle}}\\[6mm]
   {\sffamily\color{pagegray}\bookdate}
 \end{flushleft}
 \end{titlepage}
@@ -82,8 +86,11 @@
 用 XeLaTeX 编译；西文字体为 Libertinus，公式字体为 Libertinus Math，
 中文字体为思源宋体 / 思源黑体（Noto Serif~/~Sans CJK SC）。\\[10pt]
 
-\textsf{\textbf{\color{inkblue}版本}}\\[4pt]
-\bookdate 编译。源码与修订历史由 Git 管理。
+\textsf{\textbf{\color{inkblue}版本与许可}}\\[4pt]
+\bookdate 编译。源码与修订历史由 Git 管理。\\
+本书正文、\LaTeX{} 模版与转换脚本采用 \textbf{MIT} 许可：
+可自由使用、修改与再分发（含商业用途），保留版权与许可声明即可。\\
+\copyright{} 2026 \authorone、\authortwo。
 \end{flushleft}
 \vspace*{18mm}
 

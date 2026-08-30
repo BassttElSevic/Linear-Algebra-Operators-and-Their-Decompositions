@@ -6,18 +6,44 @@ tex/*.toc
 tex/*.lof
 tex/*.lot
 tex/*.lol
+tex/*.bbl
+tex/*.blg
+tex/*.idx
+tex/*.ind
+tex/*.ilg
+tex/*.nav
+tex/*.snm
+tex/*.vrb
 tex/*.fls
 tex/*.fdb_latexmk
 tex/*.synctex.gz
+tex/*.synctex
+tex/*.xdv
+tex/*.bcf
+tex/*.run.xml
+# tcolorbox 的定义/定理/命题一览表中间文件
 tex/*.jdeflist
 tex/*.jthmlist
 tex/*.jproplist
+# 编译目录里的中间 PDF（成品在 output/，是提交进仓库的）
 tex/main.pdf
 
 # Python
 __pycache__/
-*.pyc
+*.py[cod]
+.venv/
+venv/
 
-# 编辑器
+# 编辑器 / IDE
 .vscode/
+.idea/
 *.swp
+*.swo
+*~
+\#*\#
+.\#*
+
+# 操作系统
+.DS_Store
+Thumbs.db
+desktop.ini
