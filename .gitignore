@@ -1,0 +1,23 @@
+# LaTeX 编译中间文件
+tex/*.aux
+tex/*.log
+tex/*.out
+tex/*.toc
+tex/*.lof
+tex/*.lot
+tex/*.lol
+tex/*.fls
+tex/*.fdb_latexmk
+tex/*.synctex.gz
+tex/*.jdeflist
+tex/*.jthmlist
+tex/*.jproplist
+tex/main.pdf
+
+# Python
+__pycache__/
+*.pyc
+
+# 编辑器
+.vscode/
+*.swp
