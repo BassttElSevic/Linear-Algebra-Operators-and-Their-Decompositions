@@ -30,7 +30,6 @@
   ItalicFont     = *-Italic,
   BoldFont       = *-Bold,
   BoldItalicFont = *-BoldItalic,
-  Numbers        = OldStyle,
   Ligatures      = TeX,
 ]
 \setsansfont{LibertinusSans}[
@@ -42,7 +41,7 @@
 ]
 \setmonofont{LibertinusMono-Regular}[Extension = .otf, Scale = MatchLowercase]
 \setmathfont{LibertinusMath-Regular.otf}
-% 公式里的数字用等高数字，正文用老式数字
+% 正文与目录一律用等高数字（\liningfont 保留给页码、目录对齐用）
 \newfontfamily\liningfont{LibertinusSerif}[Extension=.otf, UprightFont=*-Regular,
   BoldFont=*-Bold, Numbers=Lining]
 
@@ -79,15 +78,17 @@
 % 4. 配色方案（沉静的靛蓝为主色，四种辅色区分不同类型的知识块）
 % -------------------------------------------------------------------------
 \usepackage{xcolor}
-\definecolor{inkblue}{HTML}{16324F}      % 主色：章节标题
-\definecolor{accent}{HTML}{2C5F8A}       % 辅色：节号、页眉细线
-\definecolor{defnblue}{HTML}{1C6E8C}     % 定义
-\definecolor{thmred}{HTML}{9B2C2C}       % 定理
-\definecolor{propgreen}{HTML}{1F6F54}    % 命题
-\definecolor{proofgray}{HTML}{4A5568}    % 证明思路
-\definecolor{insightgold}{HTML}{8A6100}  % 要点
-\definecolor{ideapurple}{HTML}{5B4B8A}   % 理解
-\definecolor{pagegray}{HTML}{6B7280}
+\definecolor{mainblue}{HTML}{000080}     % 主色：藏青蓝（= blue!50!black）
+\definecolor{deepblue}{HTML}{00005E}     % 更深的蓝，用于部分标题页
+\definecolor{inkblue}{HTML}{000080}      % 主色：章节标题
+\definecolor{accent}{HTML}{000080}       % 辅色：节号、页眉细线、链接
+\definecolor{defnblue}{HTML}{000080}     % 定义
+\definecolor{thmred}{HTML}{8B0000}       % 定理
+\definecolor{propgreen}{HTML}{006B3C}    % 命题
+\definecolor{proofgray}{HTML}{3F4A5A}    % 证明思路
+\definecolor{insightgold}{HTML}{8A5A00}  % 要点
+\definecolor{ideapurple}{HTML}{4B0082}   % 理解
+\definecolor{pagegray}{HTML}{5B6472}
 
 % -------------------------------------------------------------------------
 % 5. 段落、行距、标点
@@ -128,12 +129,12 @@
 % -------------------------------------------------------------------------
 % 7. 章 / 节 / 小节标题样式
 % -------------------------------------------------------------------------
-% 章：深色横条给出章序 + 大标题 + 双色横线
+% 章：深蓝横条给出章序 + 大标题 + 双色横线
 % \CTEXthechapter 与目录中的“第一章”写法保持一致
 \providecommand{\CTEXthechapter}{第\,\thechapter\,章}
 \titleformat{\chapter}[display]
   {\normalfont\sffamily\raggedright}
-  {\colorbox{inkblue}{\parbox{\dimexpr\linewidth-2\fboxsep}{%
+  {\colorbox{mainblue}{\parbox{\dimexpr\linewidth-2\fboxsep}{%
      \color{white}\sffamily\bfseries\normalsize
      \strut \CTEXthechapter}}}
   {6pt}
@@ -213,18 +214,24 @@
 
 % -------------------------------------------------------------------------
 % 10. 知识块：定义 / 定理 / 命题 / 证明思路 / 要点 / 理解 / 部分导读
+%
+%   统一风格：整宽的饱和色标题条（白字粗体）+ 细同色边框 + 极淡底色，方角。
+%   三类陈述共用一套编号（定义 12.1、定理 12.2 ……）。
 % -------------------------------------------------------------------------
 % 盒子内的段落：不缩进，靠空白分段（parbox=false 才能让段设置生效）
 \newcommand{\jboxpar}{\setlength{\parindent}{0pt}\setlength{\parskip}{0.5em plus 0.1em}}
 
-% 统一外观：隐去边框，只留左侧色条 + 极淡底色；三类共用一个“结果”计数器
 \tcbset{
   jstatement/.style = {
-    enhanced jigsaw, breakable, sharp corners, boxrule = 0pt, frame hidden,
+    enhanced, breakable, sharp corners,
     parbox = false,
-    left = 10pt, right = 10pt, top = 7pt, bottom = 7pt,
-    before skip = 11pt plus 2pt, after skip = 11pt plus 2pt,
-    fonttitle = \sffamily\bfseries,
+    boxrule = 0.6pt,
+    leftrule = 3pt,
+    left = 10pt, right = 10pt, top = 8pt, bottom = 8pt,
+    before skip = 12pt plus 2pt, after skip = 12pt plus 2pt,
+    fonttitle = \bfseries,
+    coltitle = white,
+    toptitle = 1.5pt, bottomtitle = 1.5pt,
     theorem style = standard,
     separator sign none,
     terminator sign none,
@@ -235,78 +242,89 @@
 
 \newtcbtheorem[number within = chapter, list inside = jdeflist]{jdefn}{定义}{
   jstatement,
-  colback = defnblue!5!white,
-  coltitle = defnblue!88!black,
-  borderline west = {2.6pt}{0pt}{defnblue},
+  colback = defnblue!4!white,
+  colframe = defnblue,
+  colbacktitle = defnblue,
 }{def}
 
 \newtcbtheorem[use counter from = jdefn, list inside = jthmlist]{jthm}{定理}{
   jstatement,
-  colback = thmred!5!white,
-  coltitle = thmred!88!black,
-  borderline west = {2.6pt}{0pt}{thmred},
+  colback = thmred!4!white,
+  colframe = thmred,
+  colbacktitle = thmred,
 }{thm}
 
 \newtcbtheorem[use counter from = jdefn, list inside = jproplist]{jprop}{命题}{
   jstatement,
-  colback = propgreen!5!white,
-  coltitle = propgreen!88!black,
-  borderline west = {2.6pt}{0pt}{propgreen},
+  colback = propgreen!4!white,
+  colframe = propgreen,
+  colbacktitle = propgreen,
 }{prop}
 
-% 证明思路：无底色，细灰竖线，末尾一个小方块（用 \rule 画，不依赖字体字形）
+% 证明思路：不加标题条，只用细灰竖线，以免整页都是色块；末尾一个小方块
 \newcommand{\jqed}{\textcolor{proofgray!80}{\rule[0.03em]{0.46em}{0.46em}}}
 \newtcolorbox{jproof}[1]{
   enhanced jigsaw, breakable, sharp corners, boxrule = 0pt, frame hidden,
   parbox = false,
   colback = white,
-  borderline west = {1pt}{0pt}{proofgray!45},
+  borderline west = {1.2pt}{0pt}{proofgray!55},
   left = 9pt, right = 6pt, top = 4pt, bottom = 4pt,
   before skip = 9pt plus 2pt, after skip = 11pt plus 2pt,
   fontupper = \small,
-  before upper = {\jboxpar\textcolor{proofgray}{\sffamily\bfseries #1\,}\hspace{0.45em}},
+  before upper = {\jboxpar\textcolor{proofgray}{\bfseries #1\,}\hspace{0.45em}},
   after upper  = {\unskip\nobreak\hfill\jqed},
 }
 
 % 要点（原 Markdown 的引用块）
 \newtcolorbox{jinsight}{
-  enhanced jigsaw, breakable, sharp corners, boxrule = 0pt, frame hidden,
+  enhanced, breakable, sharp corners,
   parbox = false,
-  colback = insightgold!8!white,
-  borderline west = {2.6pt}{0pt}{insightgold!85},
-  left = 10pt, right = 10pt, top = 7pt, bottom = 7pt,
-  before skip = 11pt plus 2pt, after skip = 11pt plus 2pt,
-  before upper = {\jboxpar\textcolor{insightgold!85!black}{\ding{72}\ \sffamily\bfseries 要点\,}\hspace{0.4em}},
+  boxrule = 0.6pt, leftrule = 3pt,
+  colback = insightgold!5!white,
+  colframe = insightgold,
+  colbacktitle = insightgold,
+  coltitle = white,
+  fonttitle = \bfseries,
+  toptitle = 1.5pt, bottomtitle = 1.5pt,
+  title = {\ding{72}\; 要点},
+  left = 10pt, right = 10pt, top = 8pt, bottom = 8pt,
+  before skip = 12pt plus 2pt, after skip = 12pt plus 2pt,
+  before upper = {\jboxpar},
 }
 
 % 理解 / 构造目标一类的旁注
 \newtcolorbox{jidea}[1]{
-  enhanced jigsaw, breakable, sharp corners, boxrule = 0pt, frame hidden,
+  enhanced, breakable, sharp corners,
   parbox = false,
-  colback = ideapurple!5!white,
-  borderline west = {2.6pt}{0pt}{ideapurple!85},
-  left = 10pt, right = 10pt, top = 6pt, bottom = 6pt,
-  before skip = 10pt plus 2pt, after skip = 10pt plus 2pt,
+  boxrule = 0.6pt, leftrule = 3pt,
+  colback = ideapurple!4!white,
+  colframe = ideapurple,
+  colbacktitle = ideapurple,
+  coltitle = white,
+  fonttitle = \bfseries,
+  toptitle = 1.5pt, bottomtitle = 1.5pt,
+  title = {#1},
   fontupper = \small,
-  before upper = {\jboxpar\textcolor{ideapurple!85!black}{\sffamily\bfseries #1\,}\hspace{0.45em}},
+  left = 10pt, right = 10pt, top = 7pt, bottom = 7pt,
+  before skip = 11pt plus 2pt, after skip = 11pt plus 2pt,
+  before upper = {\jboxpar},
 }
 
-% 每一“部分”的导读：整页宽的浅色大盒子
+% 每一“部分”的导读：整页宽的大盒子
 \newtcolorbox{partintro}[1]{
   enhanced, breakable, sharp corners,
   parbox = false,
-  colback = accent!4!white, colframe = accent!35,
-  boxrule = 0.6pt,
-  borderline west = {3pt}{0pt}{accent},
-  left = 14pt, right = 14pt, top = 14pt, bottom = 12pt,
-  before skip = 6pt, after skip = 16pt,
-  fonttitle = \sffamily\bfseries,
+  boxrule = 0.8pt, leftrule = 4pt,
+  colback = mainblue!4!white,
+  colframe = mainblue,
+  colbacktitle = mainblue,
   coltitle = white,
-  colbacktitle = accent,
-  title = {\ #1},
+  fonttitle = \bfseries\large,
+  toptitle = 3pt, bottomtitle = 3pt,
+  title = {#1},
+  left = 14pt, right = 14pt, top = 12pt, bottom = 12pt,
+  before skip = 6pt, after skip = 16pt,
   before upper = {\jboxpar},
-  attach boxed title to top left = {xshift = 6pt, yshift = -\tcboxedtitleheight/2},
-  boxed title style = {sharp corners, boxrule = 0pt, colback = accent},
 }
 
 % -------------------------------------------------------------------------

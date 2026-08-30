@@ -23,15 +23,15 @@
 \begin{titlepage}
 \thispagestyle{empty}
 \begin{tikzpicture}[remember picture, overlay]
-  % 左侧竖向色带
-  \fill[inkblue] (current page.north west) rectangle
+  % 左侧竖向色带（宽带 + 一条浅色细带）
+  \fill[mainblue] (current page.north west) rectangle
     ($(current page.south west) + (16mm, 0)$);
-  \fill[accent] ($(current page.north west) + (16mm, 0)$) rectangle
+  \fill[mainblue!42!white] ($(current page.north west) + (16mm, 0)$) rectangle
     ($(current page.south west) + (19mm, 0)$);
   % 右上角小方块装饰
-  \fill[accent!25] ($(current page.north east) + (-30mm, -18mm)$) rectangle
+  \fill[mainblue!30!white] ($(current page.north east) + (-30mm, -18mm)$) rectangle
     ($(current page.north east) + (-24mm, -24mm)$);
-  \fill[thmred!60] ($(current page.north east) + (-22mm, -18mm)$) rectangle
+  \fill[thmred] ($(current page.north east) + (-22mm, -18mm)$) rectangle
     ($(current page.north east) + (-16mm, -24mm)$);
 \end{tikzpicture}%
 \vspace*{38mm}
@@ -90,7 +90,7 @@
 全书用颜色区分四类内容，正文中的每一个色块都可以单独阅读：
 
 \begin{jdefn*}{定义框}{}
-青蓝色块给出概念的定义，以及为了让定义站得住脚所需要的最少解释。
+藏青蓝色块给出概念的定义，以及为了让定义站得住脚所需要的最少解释。
 \end{jdefn*}
 
 \begin{jthm*}{定理框}{}
@@ -103,19 +103,19 @@
 
 \begin{jproof}{证明思路}
 灰色竖线标出的段落是证明或证明思路。本书里许多证明只给思路：
-先说清楚"为什么必须这样做"，再补细节。段末的小方块表示论证结束。
+先说清楚“为什么必须这样做”，再补细节。段末的小方块表示论证结束。
 \end{jproof}
 
 \begin{jidea}{理解}
-紫色块是对刚才那段形式化内容的翻译，回答"这件事到底在说什么"。
+靖紫色块是对刚才那段形式化内容的翻译，回答“这件事到底在说什么”。
 \end{jidea}
 
 \begin{jinsight}
-金色块是一章或一节的要点：如果只记一句话，就记这一句。
+琥珀金色块是一章或一节的要点：如果只记一句话，就记这一句。
 \end{jinsight}
 
 未加色块的部分是叙述性的正文，负责把这些结论串成一条线。
-每一"部分"的开头都有一页蓝色导读，说明该部分研究什么、用到哪些结构。
+每一“部分”的开头都有一页藏青蓝导读，说明该部分研究什么、用到哪些结构。
 
 \cleardoublepage
 \tableofcontents

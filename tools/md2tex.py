@@ -420,6 +420,7 @@ class Builder:
         self.stats["part"] += 1
 
     def add_part_intro(self, node: Node) -> None:
+        self.w(r"\thispagestyle{plain}")
         self.w(r"\begin{partintro}{%s}" % esc(node.title))
         self.w(*render(node.body))
         self.w(r"\end{partintro}", "")
