@@ -1,0 +1,105 @@
+%% 第 15 章：复特征值对应的实二维不变子空间
+%% 本文件由 tools/md2tex.py 自动生成，请勿直接编辑。
+
+\chapter{复特征值对应的实二维不变子空间}
+
+
+\section{从复特征向量得到实不变平面}
+
+设：
+
+\[
+z=x+iy
+\]
+
+是 $T_{\mathbb C}$ 的特征向量，且：
+
+\[
+T_{\mathbb C}(z)
+=
+(a+ib)z,
+\qquad
+b\ne0.
+\]
+
+比较实部与虚部，得到：
+
+\[
+T(x)=ax-by,
+\]
+
+\[
+T(y)=bx+ay.
+\]
+
+因此：
+
+\[
+\operatorname{span}_{\mathbb R}(x,y)
+\]
+
+是 $T$ 的二维实不变子空间。
+
+\section{对应的实矩阵块}
+
+在实基：
+
+\[
+(x,y)
+\]
+
+下，$T$ 在该二维不变子空间上的矩阵为：
+
+\[
+\begin{pmatrix}
+a&b\\
+-b&a
+\end{pmatrix}.
+\]
+
+这个二维块同时描述：
+
+\begin{jitem}
+\item %
+$a$ 所代表的缩放；
+\item %
+$b$ 所代表的旋转耦合。
+\end{jitem}
+
+若 $b=0$，它退化为实特征值对应的一维结构。
+
+\section{复 Jordan 块如何回到实空间}
+
+对于一对共轭复 Jordan 块：
+
+\[
+J_r(a+ib),
+\qquad
+J_r(a-ib),
+\]
+
+回到实空间后，它们合并为一个实块矩阵：
+
+\begin{jitem}
+\item %
+每个复标量 $a+ib$ 替换为：
+
+\[
+\begin{pmatrix}
+a&b\\
+-b&a
+\end{pmatrix};
+\]
+\item %
+原 Jordan 块超对角线上的 $1$ 替换为：
+
+\[
+I_2.
+\]
+\end{jitem}
+
+这得到实 Jordan 结构。
+
+\section{复化的意义}
+
+复化让实算子的真实谱结构在更大的数域中显现，再将共轭成对的复结构无损翻译为实空间中的二维不变块。

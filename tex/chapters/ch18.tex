@@ -1,0 +1,105 @@
+%% 第 17 章：伴随的零空间和值域
+%% 本文件由 tools/md2tex.py 自动生成，请勿直接编辑。
+
+\chapter{伴随的零空间和值域}
+
+
+\begin{jprop}{伴随的零空间}{r:18:1}
+\[
+\ker T^*
+=
+(\operatorname{range}T)^\perp.
+\]
+\end{jprop}
+
+\begin{jproof}{证明思路}
+$w\in\ker T^*$，意味着：
+
+\[
+T^*(w)=0.
+\]
+
+由伴随定义，这等价于：
+
+\[
+\langle T(v),w\rangle=0
+\]
+
+对所有 $v\in V$ 都成立。
+
+而所有 $T(v)$ 恰好组成 $\operatorname{range}T$。因此，$w$ 与 $T$ 的全部输出正交，即：
+
+\[
+w\in(\operatorname{range}T)^\perp.
+\]
+\end{jproof}
+
+\begin{jprop}{伴随的值域}{r:18:2}
+在有限维情形：
+
+\[
+\operatorname{range}T^*
+=
+(\ker T)^\perp.
+\]
+\end{jprop}
+
+\begin{jproof}{证明思路}
+若 $u=T^*(w)$，且 $v\in\ker T$，则：
+
+\[
+\langle v,u\rangle
+=
+\langle v,T^*(w)\rangle
+=
+\langle T(v),w\rangle
+=
+0.
+\]
+
+因此：
+
+\[
+\operatorname{range}T^*
+\subseteq
+(\ker T)^\perp.
+\]
+
+另一方面，伴随与原映射具有相同的秩：
+
+\[
+\operatorname{rank}T^*=\operatorname{rank}T.
+\]
+
+而：
+
+\[
+\dim(\ker T)^\perp
+=
+\dim V-\dim\ker T
+=
+\operatorname{rank}T.
+\]
+
+一个子空间包含于另一个子空间，且两者维数相同，因此它们相等。
+\end{jproof}
+
+\section{四个子空间关系}
+
+伴随将此前的四个子空间关系写成：
+
+\[
+\ker T^*
+=
+(\operatorname{range}T)^\perp,
+\]
+
+\[
+\operatorname{range}T^*
+=
+(\ker T)^\perp.
+\]
+
+在标准欧氏坐标下，$T^*$ 对应共轭转置；实矩阵情形下就是转置。
+
+这正是经典“四个基本子空间”中行空间、列空间、零空间与左零空间关系的抽象版本，我们将在表示的笔记中更加详细的去说明。

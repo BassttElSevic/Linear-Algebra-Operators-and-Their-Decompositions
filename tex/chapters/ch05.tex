@@ -1,0 +1,85 @@
+%% 第 4 章：算子多项式
+%% 本文件由 tools/md2tex.py 自动生成，请勿直接编辑。
+
+\chapter{算子多项式}
+
+
+\begin{jdefn}{算子多项式的定义}{r:5:1}
+对于多项式：
+
+\[
+p(z)=a_0+a_1z+\cdots+a_mz^m,
+\]
+
+定义：
+
+\[
+p(T)
+=
+a_0I+a_1T+\cdots+a_mT^m.
+\]
+
+这个定义有意义，因为 $I,T,T^2,\ldots$ 都是从 $V$ 到 $V$ 的线性算子，可以相加与数乘。
+\end{jdefn}
+
+\begin{jprop}{算子多项式的乘法}{r:5:2}
+若 $p,q$ 是两个多项式，则：
+
+\[
+p(T)q(T)=(pq)(T).
+\]
+\end{jprop}
+
+\begin{jidea}{理解}
+所有出现在 $p(T)$ 与 $q(T)$ 中的项，都是同一个算子 $T$ 的幂。因此：
+
+\[
+T^rT^s=T^{r+s},
+\]
+
+且它们彼此可交换。
+
+这使普通多项式的乘法规则可以直接迁移到算子多项式。
+\end{jidea}
+
+\begin{jprop}{多项式算子的核和值域是不变子空间}{r:5:3}
+对于任意多项式 $p$：
+
+\[
+\ker p(T)
+\]
+
+与：
+
+\[
+\operatorname{range}p(T)
+\]
+
+都是 $T$ 的不变子空间。
+\end{jprop}
+
+\begin{jproof}{证明思路}
+$T$ 与 $p(T)$ 可交换。
+
+若 $v\in\ker p(T)$，则：
+
+\[
+p(T)T(v)=T p(T)(v)=0.
+\]
+
+所以 $T(v)$ 仍在 $\ker p(T)$ 中。
+
+若 $v\in\operatorname{range}p(T)$，则存在 $u$ 使：
+
+\[
+v=p(T)u.
+\]
+
+于是：
+
+\[
+T(v)=Tp(T)u=p(T)T(u).
+\]
+
+所以 $T(v)$ 仍在 $\operatorname{range}p(T)$ 中。
+\end{jproof}

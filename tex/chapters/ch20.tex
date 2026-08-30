@@ -1,0 +1,200 @@
+%% 第 19 章：自伴算子
+%% 本文件由 tools/md2tex.py 自动生成，请勿直接编辑。
+
+\chapter{自伴算子}
+
+
+\begin{jdefn}{自伴算子的定义}{r:20:1}
+若：
+
+\[
+T=T^*,
+\]
+
+则称 $T$ 是自伴算子。
+
+在规范正交基下，自伴算子的矩阵满足：
+
+\[
+A=A^*.
+\]
+
+实数情形中，这就是对称矩阵；复数情形中，这就是 Hermitian 矩阵（共轭对称阵）。
+\end{jdefn}
+
+\begin{jprop}{自伴算子的基本性质}{r:20:2}
+若 $S,T$ 都是自伴算子，则：
+
+\[
+S+T
+\]
+
+也是自伴算子。
+
+若 $a\in\mathbb R$，则：
+
+\[
+aT
+\]
+
+也是自伴算子。
+
+两个自伴算子的乘积不一定自伴。若额外满足：
+
+\[
+ST=TS,
+\]
+
+则：
+
+\[
+(ST)^*=T^*S^*=TS=ST,
+\]
+
+所以 $ST$ 自伴。
+\end{jprop}
+
+\begin{jprop}{自伴算子的特征值是实数}{r:20:3}
+若：
+
+\[
+Tv=\lambda v,
+\qquad
+v\ne0,
+\]
+
+且 $T$ 自伴，则：
+
+\[
+\lambda\in\mathbb R.
+\]
+\end{jprop}
+
+\begin{jproof}{证明思路}
+计算：
+
+\[
+\langle Tv,v\rangle.
+\]
+
+一方面，由特征值关系，它等于 $\lambda\langle v,v\rangle$。
+
+另一方面，由自伴性：
+
+\[
+\langle Tv,v\rangle
+=
+\langle v,Tv\rangle,
+\]
+
+所以它等于自己的共轭。
+
+由于：
+
+\[
+\langle v,v\rangle>0,
+\]
+
+只能有：
+
+\[
+\lambda=\overline{\lambda}.
+\]
+
+因此 $\lambda$ 是实数。
+\end{jproof}
+
+\begin{jprop}{复内积空间中自伴的刻画}{r:20:4}
+在复内积空间中：
+
+\[
+T\text{ 自伴}
+\iff
+\langle Tv,v\rangle\in\mathbb R
+\text{ 对所有 }v\in V.
+\]
+\end{jprop}
+
+\begin{jproof}{证明思路}
+自伴时，内积可以直接看出等于自己的共轭，因此为实数。
+
+反过来，若所有：
+
+\[
+\langle Tv,v\rangle
+\]
+
+都为实数，则分别对 $u+v$ 与 $u+iv$ 使用该条件。
+
+展开后可分别得到：
+
+\[
+\langle Tu,v\rangle
+=
+\langle u,Tv\rangle.
+\]
+
+这正是：
+
+\[
+T=T^*.
+\]
+\end{jproof}
+
+\begin{jprop}{复内积空间中的零二次型结论}{r:20:5}
+若 $V$ 是复内积空间，且：
+
+\[
+\langle Tv,v\rangle=0
+\]
+
+对所有 $v\in V$ 成立，则：
+
+\[
+T=0.
+\]
+\end{jprop}
+
+\begin{jproof}{证明思路}
+分别代入 $u+v$ 与 $u+iv$。
+
+前者表明：
+
+\[
+\langle Tu,v\rangle
+\]
+
+的实部为零；后者表明其虚部也为零。
+
+因此：
+
+\[
+\langle Tu,v\rangle=0
+\]
+
+对所有 $u,v$ 成立。
+
+特别取：
+
+\[
+v=Tu,
+\]
+
+得到：
+
+\[
+\|Tu\|^2=0.
+\]
+
+所以 $Tu=0$ 对所有 $u$ 成立，即：
+
+\[
+T=0.
+\]
+
+实内积空间中此结论不成立。平面上的 $90^\circ$ 旋转算子非零，但对每个 $v$ 都满足：
+
+\[
+\langle Tv,v\rangle=0.
+\]
+\end{jproof}

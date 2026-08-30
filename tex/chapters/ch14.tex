@@ -1,0 +1,143 @@
+%% 第 13 章：Jordan 块与 Jordan 标准型
+%% 本文件由 tools/md2tex.py 自动生成，请勿直接编辑。
+
+\chapter{Jordan 块与 Jordan 标准型}
+
+
+\begin{jdefn}{Jordan 块}{r:14:1}
+对长度为 $r$ 的 Jordan 链：
+
+\[
+(v_1,\ldots,v_r),
+\]
+
+其中：
+
+\[
+Tv_1=\lambda v_1,
+\]
+
+\[
+Tv_j=\lambda v_j+v_{j-1},
+\]
+
+则 $T$ 在这组基下的矩阵为：
+
+\[
+J_r(\lambda)
+=
+\begin{pmatrix}
+\lambda&1&0&\cdots&0\\
+0&\lambda&1&\cdots&0\\
+0&0&\lambda&\ddots&0\\
+\vdots&\vdots&\ddots&\ddots&1\\
+0&0&0&0&\lambda
+\end{pmatrix}.
+\]
+
+它称为一个属于特征值 $\lambda$ 的 Jordan 块。
+\end{jdefn}
+
+\section{Jordan 块的意义}
+
+对角线上的 $\lambda$ 表示该链上的基本缩放。
+
+上方的 $1$ 表示：这个方向除了被缩放外，还会向链中更低一级的方向产生不可消除的耦合。
+
+若块大小大于 $1$，该部分不能仅由普通特征向量组成，因此不能完全对角化。
+
+\begin{jthm}{Jordan 标准型定理}{r:14:2}
+若 $V$ 是有限维复向量空间，则任意算子：
+
+\[
+T:V\to V
+\]
+
+都存在一组基，使其矩阵是若干 Jordan 块构成的块对角矩阵：
+
+\[
+[T]
+=
+J_{r_1}(\lambda_1)
+\oplus
+\cdots
+\oplus
+J_{r_m}(\lambda_m).
+\]
+
+Jordan 块的排列顺序可以改变，但每个特征值对应的块大小集合是由 $T$ 唯一确定的。
+\end{jthm}
+
+\begin{jprop}{Jordan 标准型与对角化}{r:14:3}
+\[
+T\text{ 可对角化}
+\iff
+\text{所有 Jordan 块都为 }1\times1.
+\]
+
+等价地：
+
+\[
+G_\lambda=E_\lambda
+\]
+
+对每个特征值 $\lambda$ 都成立。
+
+还等价于最小多项式没有重复根：
+
+\[
+m_T(z)
+=
+\prod_\lambda(z-\lambda).
+\]
+\end{jprop}
+
+\section{幂零算子的矩阵结构}
+
+若 $N$ 是幂零算子，则它唯一的特征值是：
+
+\[
+0.
+\]
+
+证明：设 $\lambda$ 是 $N$ 的任意一个特征值，$v\neq 0$ 为对应的特征向量，则
+
+\[
+Nv=\lambda v.
+\]
+
+两边连续作用算子 $N$，可得
+
+\[
+N^2 v = N(Nv)=N(\lambda v)=\lambda Nv=\lambda^2 v.
+\]
+
+归纳可得
+
+\[
+N^k v=\lambda^k v.
+\]
+
+由幂零条件 $N^k=0$，于是
+
+\[
+\lambda^k v = N^k v = 0.
+\]
+
+因 $v\neq 0$，故 $\lambda^k=0$，从而 $\lambda=0$。
+
+因此幂零算子仅能以 $0$ 作为特征值。
+
+因此，它在 Jordan 基下的矩阵由若干：
+
+\[
+J_r(0)
+\]
+
+构成。
+
+这些 Jordan 块的对角线全为零。
+
+显然，对于使其成为上三角阵的任意一组基，对角线为零。
+
+幂零算子的矩阵并非在任意基下都显然对角线为零；这里的结论是针对 Jordan 基，或任意使其上三角化的基。

@@ -1,0 +1,281 @@
+%% 第 26 章：奇异值分解
+%% 本文件由 tools/md2tex.py 自动生成，请勿直接编辑。
+
+\chapter{奇异值分解}
+
+
+\section{为什么需要奇异值分解}
+
+特征值分解要求：
+
+\[
+T:V\to V.
+\]
+
+而奇异值分解适用于任意有限维内积空间之间的线性映射：
+
+\[
+T:V\to W.
+\]
+
+它同时在输入空间和输出空间中选择规范正交基，使 $T$ 只沿对应方向进行独立缩放。
+
+\section[从 T*T 出发]{从 $T^*T$ 出发}
+
+算子：
+
+\[
+T^*T:V\to V
+\]
+
+是自伴正算子。
+
+由谱定理，存在 $V$ 的规范正交基：
+
+\[
+(v_1,\ldots,v_n),
+\]
+
+使：
+
+\[
+T^*Tv_i=\sigma_i^2v_i,
+\qquad
+\sigma_i\ge0.
+\]
+
+其中非负数：
+
+\[
+\sigma_i
+\]
+
+称为 $T$ 的奇异值。
+
+\begin{jprop}{非零奇异值对应的输出方向}{r:27:1}
+设：
+
+\[
+\sigma_i>0.
+\]
+
+定义：
+
+\[
+u_i
+=
+\frac{T(v_i)}{\sigma_i}.
+\]
+
+则：
+
+\[
+T(v_i)=\sigma_iu_i.
+\]
+
+并且全部这样的 $u_i$ 构成 $W$ 中的规范正交列表。
+\end{jprop}
+
+\begin{jproof}{证明思路}
+对任意正奇异值对应的 $v_i,v_j$：
+
+\[
+\langle T(v_i),T(v_j)\rangle
+=
+\langle v_i,T^*Tv_j\rangle.
+\]
+
+而：
+
+\[
+T^*Tv_j=\sigma_j^2v_j.
+\]
+
+因为 $v_i$ 彼此规范正交，得到：
+
+\[
+\langle T(v_i),T(v_j)\rangle
+=
+\sigma_i^2\delta_{ij}.
+\]
+
+除以对应的 $\sigma_i,\sigma_j$ 后，便得到：
+
+\[
+\langle u_i,u_j\rangle=\delta_{ij}.
+\]
+\end{jproof}
+
+\begin{jprop}{零奇异值与零空间}{r:27:2}
+若：
+
+\[
+\sigma_i=0,
+\]
+
+则：
+
+\[
+T^*Tv_i=0.
+\]
+
+于是：
+
+\[
+\|Tv_i\|^2
+=
+\langle T^*Tv_i,v_i\rangle
+=
+0.
+\]
+
+因此：
+
+\[
+Tv_i=0.
+\]
+
+所以，零奇异值对应的右奇异向量恰好张成：
+
+\[
+\ker T.
+\]
+
+这就是 SVD 中“降维”发生的位置：这些输入方向会被完全压缩掉。
+\end{jprop}
+
+\begin{jthm}{奇异值分解定理}{r:27:3}
+设：
+
+\[
+T:V\to W
+\]
+
+是有限维内积空间之间的线性映射，且：
+
+\[
+\operatorname{rank}T=r.
+\]
+
+则存在 $V$ 的规范正交基：
+
+\[
+(v_1,\ldots,v_n),
+\]
+
+以及 $W$ 的规范正交基：
+
+\[
+(u_1,\ldots,u_m),
+\]
+
+使：
+
+\[
+T(v_i)=\sigma_i u_i,
+\qquad
+i=1,\ldots,r,
+\]
+
+其中：
+
+\[
+\sigma_1,\ldots,\sigma_r>0.
+\]
+
+并且：
+
+\[
+T(v_i)=0,
+\qquad
+i=r+1,\ldots,n.
+\]
+
+在这两组基下，$T$ 的矩阵为矩形对角矩阵：
+
+\[
+\Sigma
+=
+\begin{pmatrix}
+\sigma_1 & 0 & \cdots & 0\\
+0 & \sigma_2 & \cdots & 0\\
+\vdots & \vdots & \ddots & \vdots\\
+0 & 0 & \cdots & \sigma_r\\
+0 & 0 & \cdots & 0\\
+\vdots & \vdots & & \vdots
+\end{pmatrix}.
+\]
+
+矩阵形式常写为：
+
+\[
+A=U\Sigma V^*.
+\]
+\end{jthm}
+
+\section{SVD 为什么一定有足够多的基向量}
+
+第一步，谱定理为：
+
+\[
+T^*T
+\]
+
+提供 $V$ 的完整规范正交特征基。
+
+其中正特征值方向经过 $T$ 后，构造出 $W$ 中规范正交的左奇异向量。
+
+零特征值方向正好组成：
+
+\[
+\ker T.
+\]
+
+最后，将已有左奇异向量补全为 $W$ 的规范正交基。
+
+因此，SVD 不假设输入输出空间恰好存在配对基（这是我们先前学习的一大误解），它由：
+
+\[
+T^*T
+\]
+
+的正谱结构主动构造输入基，再由 $T$ 构造输出基。
+
+\section[从 TT* 出发]{从 $TT^*$ 出发}
+
+同样可以从：
+
+\[
+TT^*:W\to W
+\]
+
+开始。
+
+若：
+
+\[
+T^*Tv=\sigma^2v,
+\qquad
+\sigma>0,
+\]
+
+则：
+
+\[
+TT^*(Tv)
+=
+\sigma^2(Tv).
+\]
+
+因此，$T^*T$ 与 $TT^*$ 的全部正特征值相同，且重数相同。
+
+它们分别描述同一组奇异模式在输入空间与输出空间中的表现：
+
+\begin{jitem}
+\item %
+$T^*T$ 给出右奇异向量，即输入方向；
+\item %
+$TT^*$ 给出左奇异向量，即输出方向。
+\end{jitem}
+
+二者在零特征值部分可能维数不同，这正反映了定义域、陪域维数与核、余核结构的差异。

@@ -1,0 +1,72 @@
+%% 第 10 章：Fitting 分解
+%% 本文件由 tools/md2tex.py 自动生成，请勿直接编辑。
+
+\chapter{Fitting 分解}
+
+
+\begin{jthm}{Fitting 分解定理}{r:11:1}
+设：
+
+\[
+A:V\to V
+\]
+
+是有限维空间上的算子，且：
+
+\[
+n\ge\dim V.
+\]
+
+则：
+
+\[
+V
+=
+\ker A^n
+\oplus
+\operatorname{range}A^n.
+\]
+\end{jthm}
+
+\section{Fitting 分解的意义}
+
+空间被分为两部分：
+
+\begin{jitem}
+\item %
+$\ker A^n$：反复作用 $A$ 后最终消失的部分；
+\item %
+$\operatorname{range}A^n$：经过很多次作用后仍然保留下来的部分。
+\end{jitem}
+
+当：
+
+\[
+A=T-\lambda I,
+\]
+
+第一部分就是 $\lambda$ 的广义特征空间。
+
+\begin{jproof}{证明思路}
+当 $n$ 足够大时，零空间链与值域链都已经稳定。
+
+由秩—零化度定理：
+
+\[
+\dim\ker A^n+\dim\operatorname{range}A^n
+=
+\dim V.
+\]
+
+因此，只需证明二者交集为零。
+
+若某个向量既在 $\ker A^n$ 中，又在 $\operatorname{range}A^n$ 中，则它可以写成 $A^n(u)$，同时又会被 $A^n$ 消掉。
+
+这意味着 $u$ 落入更高次的零空间。由于零空间链已经稳定，$u$ 其实已经在 $\ker A^n$ 中，因此：
+
+\[
+A^n(u)=0.
+\]
+
+所以交集只能是零向量。
+\end{jproof}

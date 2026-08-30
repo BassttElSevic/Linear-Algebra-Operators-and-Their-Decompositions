@@ -1,0 +1,66 @@
+%% 第 8 章：对角化
+%% 本文件由 tools/md2tex.py 自动生成，请勿直接编辑。
+
+\chapter{对角化}
+
+
+\begin{jdefn}{对角化的定义}{r:9:1}
+算子 $T$ 可对角化，当且仅当存在一组由特征向量构成的基。
+
+在该基下：
+
+\[
+[T]
+=
+\begin{pmatrix}
+\lambda_1&0&\cdots&0\\
+0&\lambda_2&\cdots&0\\
+\vdots&\vdots&\ddots&\vdots\\
+0&0&\cdots&\lambda_n
+\end{pmatrix}.
+\]
+\end{jdefn}
+
+\section{对角化的结构意义}
+
+对角化等价于：
+
+\[
+V
+=
+\bigoplus_\lambda E_\lambda,
+\]
+
+其中求和遍历 $T$ 的全部不同特征值。
+
+每个特征空间本身可能高于一维；但在特征空间内部，$T$ 只做同一个比例的缩放：
+
+\[
+T(v)=\lambda v,
+\qquad
+v\in E_\lambda.
+\]
+
+\section{对角化的意义}
+
+在特征向量基下，算子不再混合不同方向。
+
+对每个坐标方向，$T$ 只进行独立缩放。于是：
+
+\[
+T^k(v_j)=\lambda_j^k v_j.
+\]
+
+这使算子的高次幂、线性递推与长期行为都变得直接可读。
+
+\section{对角化与 Jordan 标准型}
+
+对角化是 Jordan 标准型的特殊情形。
+
+当每个 Jordan 块都只有：
+
+\[
+1\times1
+\]
+
+时，Jordan 标准型就是一个对角矩阵。

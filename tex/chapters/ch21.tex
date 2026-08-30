@@ -1,0 +1,172 @@
+%% 第 20 章：正规算子
+%% 本文件由 tools/md2tex.py 自动生成，请勿直接编辑。
+
+\chapter{正规算子}
+
+
+\begin{jdefn}{正规算子的定义}{r:21:1}
+若：
+
+\[
+T^*T=TT^*,
+\]
+
+则称 $T$ 是正规算子。
+
+自伴算子一定正规，因为：
+
+\[
+T^*T=TT=TT^*.
+\]
+
+但正规算子不一定自伴。平面旋转算子就是正规但非自伴的例子。
+\end{jdefn}
+
+\begin{jprop}{正规算子的范数刻画}{r:21:2}
+\[
+T\text{ 正规}
+\iff
+\|Tv\|=\|T^*v\|
+\text{ 对所有 }v\in V.
+\]
+\end{jprop}
+
+\begin{jproof}{证明思路}
+将两边范数平方展开：
+
+\[
+\|Tv\|^2
+=
+\langle T^*Tv,v\rangle,
+\]
+
+\[
+\|T^*v\|^2
+=
+\langle TT^*v,v\rangle.
+\]
+
+因此，若 $T^*T=TT^*$，两者范数相同。
+
+反过来，若所有向量的两个范数都相同，在复内积空间中，这足以推出：
+
+\[
+T^*T=TT^*.
+\]
+\end{jproof}
+
+\begin{jprop}{正规算子的特征向量也是伴随的特征向量}{r:21:3}
+若 $T$ 正规，且：
+
+\[
+Tv=\lambda v,
+\qquad
+v\ne0,
+\]
+
+则：
+
+\[
+T^*v=\overline{\lambda}v.
+\]
+\end{jprop}
+
+\begin{jproof}{证明思路}
+算子：
+
+\[
+T-\lambda I
+\]
+
+仍然正规。
+
+而：
+
+\[
+(T-\lambda I)v=0.
+\]
+
+正规算子的范数刻画说明：若一个向量被正规算子映为零，它也会被该算子的伴随映为零。
+
+因此：
+
+\[
+(T-\lambda I)^*v=0.
+\]
+
+又因为：
+
+\[
+(T-\lambda I)^*
+=
+T^*-\overline{\lambda}I,
+\]
+
+所以：
+
+\[
+T^*v=\overline{\lambda}v.
+\]
+\end{jproof}
+
+\begin{jprop}{不同特征值对应的特征向量正交}{r:21:4}
+若 $T$ 正规，且：
+
+\[
+Tv=\lambda v,
+\qquad
+Tw=\mu w,
+\qquad
+\lambda\ne\mu,
+\]
+
+则：
+
+\[
+\langle v,w\rangle=0.
+\]
+\end{jprop}
+
+\begin{jproof}{证明思路}
+由前一结论：
+
+\[
+T^*w=\overline{\mu}w.
+\]
+
+于是：
+
+\[
+\langle Tv,w\rangle
+=
+\lambda\langle v,w\rangle.
+\]
+
+另一方面：
+
+\[
+\langle Tv,w\rangle
+=
+\langle v,T^*w\rangle
+=
+\mu\langle v,w\rangle.
+\]
+
+因此：
+
+\[
+(\lambda-\mu)\langle v,w\rangle=0.
+\]
+
+因为：
+
+\[
+\lambda\ne\mu,
+\]
+
+所以：
+
+\[
+\langle v,w\rangle=0.
+\]
+\end{jproof}

@@ -1,0 +1,257 @@
+%% 第 6 章：特征多项式、Cayley-Hamilton 定理与最小多项式
+%% 本文件由 tools/md2tex.py 自动生成，请勿直接编辑。
+
+\chapter{特征多项式、Cayley-Hamilton 定理与最小多项式}
+
+
+\begin{jdefn}{特征多项式}{r:7:1}
+设 $V$ 有限维。
+
+定义 $T$ 的特征多项式为：
+
+\[
+p_T(z)=\det(zI-T).
+\]
+
+其中，$I$ 是恒等算子在某组基下的单位矩阵表示。
+\end{jdefn}
+
+\begin{jprop}{特征值与特征多项式}{r:7:2}
+\[
+\lambda\text{ 是 }T\text{ 的特征值}
+\iff
+p_T(\lambda)=0.
+\]
+\end{jprop}
+
+\begin{jidea}{理解}
+\[
+p_T(\lambda)=0
+\]
+
+意味着：
+
+\[
+\det(\lambda I-T)=0.
+\]
+
+因此 $\lambda I-T$ 不可逆，也就是：
+
+\[
+T-\lambda I
+\]
+
+不具有可逆性。于是其零空间非平凡，存在特征向量。
+\end{jidea}
+
+\begin{jdefn}{代数重数与几何重数}{r:7:3}
+若 $\lambda$ 是 $p_T(z)$ 的根，则它作为根的重数称为 $\lambda$ 的代数重数。
+
+\[
+\dim E_\lambda
+\]
+
+称为 $\lambda$ 的几何重数。
+
+几何重数表示有多少个独立的普通特征向量；代数重数则表示该特征值在特征多项式中总共出现多少次。
+\end{jdefn}
+
+\begin{jthm}{Cayley-Hamilton 定理}{r:7:4}
+\[
+p_T(T)=0.
+\]
+
+即：每个有限维算子都满足自己的特征多项式方程。
+\end{jthm}
+
+\section{Cayley-Hamilton 定理有什么用}
+
+在复数域上，代数基本定理保证：
+
+\[
+p_T(z)
+=
+\prod_{j=1}^s(z-\lambda_j)^{a_j},
+\]
+
+其中：
+
+\[
+\lambda_1,\ldots,\lambda_s
+\]
+
+是全部不同特征值。
+
+由 Cayley-Hamilton 定理：
+
+\[
+\prod_{j=1}^s(T-\lambda_jI)^{a_j}=0.
+\]
+
+这说明：反复施加各个 $T-\lambda_jI$ 后，整个空间中的任何向量最终都会被消掉。这个定理的证明从略。
+
+不同特征值对应的因子彼此互素。正是这种互素性，使我们能够把空间拆成不同特征值对应的广义特征空间。
+
+\begin{jinsight}
+代数基本定理负责把特征多项式拆成不同特征值的因子；Cayley-Hamilton 定理则保证这些因子写成算子的形式之后，真的能把整个空间分解成广义特征空间。
+\end{jinsight}
+
+\section{不同广义特征空间为何能够构成直和}
+
+设特征多项式分解为：
+
+\[
+p_T(z)
+=
+\prod_{j=1}^s(z-\lambda_j)^{a_j},
+\]
+
+其中：
+
+\[
+\lambda_1,\ldots,\lambda_s
+\]
+
+两两不同。
+
+由 Cayley-Hamilton 定理：
+
+\[
+\prod_{j=1}^s(T-\lambda_jI)^{a_j}=0.
+\]
+
+这里仅说明：全部因子依次作用后会消掉任意向量。要将空间拆成不同特征值对应的部分，还需要利用不同因子之间的互素性。
+
+以两个因子为例，令：
+
+\[
+f(z)=(z-\lambda)^a,
+\qquad
+g(z)=(z-\mu)^b,
+\qquad
+\lambda\ne\mu.
+\]
+
+因为 $f$ 与 $g$ 没有公共根，所以它们互素。由 Bézout 恒等式，存在多项式 $r,s$，使：
+
+\[
+r(z)f(z)+s(z)g(z)=1.
+\]
+
+将 $z$ 替换为 $T$，得到：
+
+\[
+r(T)f(T)+s(T)g(T)=I.
+\]
+
+因此，对任意 $v\in V$：
+
+\[
+v
+=
+r(T)f(T)v+s(T)g(T)v.
+\]
+
+其中，第一项被 $g(T)$ 消掉，第二项被 $f(T)$ 消掉。因此：
+
+\[
+v
+\in
+\ker f(T)+\ker g(T).
+\]
+
+若 $v$ 同时属于：
+
+\[
+\ker f(T)
+\quad\text{与}\quad
+\ker g(T),
+\]
+
+则：
+
+\[
+v
+=
+r(T)f(T)v+s(T)g(T)v
+=
+0.
+\]
+
+所以：
+
+\[
+\ker f(T)\cap\ker g(T)=\{0\}.
+\]
+
+故：
+
+\[
+V
+=
+\ker f(T)\oplus\ker g(T).
+\]
+
+对全部两两不同的特征值重复这一论证，即得到：
+
+\[
+V
+=
+G_{\lambda_1}\oplus\cdots\oplus G_{\lambda_s},
+\]
+
+其中：
+
+\[
+G_{\lambda_j}
+=
+\ker(T-\lambda_jI)^{a_j}.
+\]
+
+\begin{jinsight}
+这是由代数性质证明的，而在下面会有另外一种方式来证明，$V$ 可以被直和分解，而它依赖于我们之后证明的有关幂零算子的性质。
+\end{jinsight}
+
+\begin{jdefn}{最小多项式}{r:7:5}
+使：
+
+\[
+m_T(T)=0
+\]
+
+成立的所有首一多项式中，次数最小的那个称为 $T$ 的最小多项式，记作：
+
+\[
+m_T(z).
+\]
+\end{jdefn}
+
+\begin{jprop}{最小多项式的性质}{r:7:6}
+\[
+m_T(z)\mid p_T(z).
+\]
+
+并且，任何满足：
+
+\[
+q(T)=0
+\]
+
+的多项式 $q$，都能被 $m_T$ 整除。
+\end{jprop}
+
+\section{最小多项式的意义}
+
+特征多项式告诉我们每个特征值总共出现多少次。
+
+最小多项式告诉我们：对每个特征值，算子偏离可对角化状态的最深程度，即最大需要应用几次幂零算子才能形成一条完整的若尔当链。
+
+在 Jordan 标准型中，若：
+
+\[
+m_T(z)
+=
+\prod_\lambda(z-\lambda)^{r_\lambda},
+\]
+
+则 $r_\lambda$ 等于 $\lambda$ 对应的最大 Jordan 块的大小。

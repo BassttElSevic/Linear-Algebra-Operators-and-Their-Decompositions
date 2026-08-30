@@ -1,0 +1,97 @@
+%% 第 3 章：特征值、特征向量与特征空间
+%% 本文件由 tools/md2tex.py 自动生成，请勿直接编辑。
+
+\chapter{特征值、特征向量与特征空间}
+
+
+\begin{jdefn}{特征值与特征向量}{r:4:1}
+若存在非零向量 $v\in V$，使：
+
+\[
+T(v)=\lambda v,
+\]
+
+则称 $\lambda\in\mathbb F$ 是 $T$ 的特征值，$v$ 是对应的特征向量。
+
+特征向量张成的一维空间：
+
+\[
+\operatorname{span}(v)
+\]
+
+是最简单的不变子空间。
+\end{jdefn}
+
+\section{特征值的等价描述}
+
+\[
+\lambda\text{ 是 }T\text{ 的特征值}
+\iff
+\ker(T-\lambda I)\ne\{0\}.
+\]
+
+在有限维情形，还等价于：
+
+\[
+T-\lambda I\text{ 不可逆}.
+\]
+
+注意：
+
+\[
+T-\lambda I=0
+\]
+
+表示 $T=\lambda I$，即空间中每个向量都被同一个比例缩放。这比“$\lambda$ 是一个特征值”强得多。
+
+\begin{jdefn}{特征空间}{r:4:2}
+定义：
+
+\[
+E_\lambda
+=
+\ker(T-\lambda I).
+\]
+
+它称为 $\lambda$ 对应的特征空间。
+
+其中的非零向量正是所有属于 $\lambda$ 的特征向量。
+\end{jdefn}
+
+\begin{jprop}{不同特征值对应的特征向量线性无关}{r:4:3}
+若：
+
+\[
+\lambda_1,\ldots,\lambda_m
+\]
+
+两两不同，且：
+
+\[
+v_j\in E_{\lambda_j}\setminus\{0\},
+\]
+
+则：
+
+\[
+v_1,\ldots,v_m
+\]
+
+线性无关。
+\end{jprop}
+
+\begin{jproof}{证明思路}
+假设它们存在最短的非平凡线性关系。
+
+对该关系施加 $T-\lambda_m I$。最后一个向量会被消掉，而其余特征向量只会被乘上非零标量，因此得到一条更短的非平凡关系，产生矛盾。
+\end{jproof}
+
+\section{同一特征值也可能有多个线性无关特征向量}
+
+若：
+
+\[
+\dim E_\lambda>1,
+\]
+
+则同一个特征值 $\lambda$ 对应多个线性无关特征向量。
