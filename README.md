@@ -1,16 +1,25 @@
 # 线性代数：抽象结构 —— 算子及其分解
 
-
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![UwU](https://img.shields.io/badge/-UwU-ff69b4?style=flat-square)](https://github.com/BassttElSevic/Linear-Algebra-Operators-and-Their-Decompositions/)
+[![Repository](https://img.shields.io/badge/GitHub-Repo-181717?style=flat-square&logo=github)](https://github.com/BassttElSevic/Linear-Algebra-Operators-and-Their-Decompositions/)
+[![LaTeX](https://img.shields.io/badge/LaTeX-008080?style=flat-square&logo=latex&logoColor=white)](https://www.latex-project.org/)
+[![TeX](https://img.shields.io/badge/TeX-000000?style=flat-square&logo=tex&logoColor=white)](https://tug.org/)
+[![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
+[![Makefile](https://img.shields.io/badge/Makefile-427819?style=flat-square&logo=gnu&logoColor=white)](https://www.gnu.org/software/make/)
+[![Linux](https://img.shields.io/badge/Linux-000000?style=flat-square&logo=linux&logoColor=white)](https://www.linux.org/)
 
 > 一本讲「有限维向量空间上的**算子**如何被分解」的自编教材。
 > Markdown 写内容，Python 脚本转成 LaTeX，XeLaTeX 排成 117 页的 PDF。
 
-| | | |
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&lines=Hello+there!;Welcome+to+my+project)](https://git.io/typing-svg)
+
+| | | 神必大头 |
 | --- | --- | --- |
 | 撰写（一作） | **夜航未西飞** · [github.com/Singularity-baakaka](https://github.com/Singularity-baakaka) | <img width="460" height="460" alt="图片" src="https://github.com/user-attachments/assets/50dd6367-40a6-4086-b8ce-ae4a5e34806f" /> |
 | 校对、LaTeX 排版（二作） | **阿酒** · Basstt ElSevic · [github.com/BassttElSevic](https://github.com/BassttElSevic) | <img width="500" height="500" alt="图片" src="https://github.com/user-attachments/assets/c5a5ea84-8b31-4641-81b1-cea08a739ba7" /> |
-| 成品 | [`output/线性代数-算子及其分解.pdf`](output/) · 117 页 · B5 开本 | |
-| 许可 | [MIT](LICENSE)（正文与代码同时适用） | |
+| 成品 | [`output/线性代数-算子及其分解.pdf`](output/) · 117 页 · B5 开本 | <img width="547" height="781" alt="图片" src="https://github.com/user-attachments/assets/c812ca6a-4b65-4893-abbc-eba286fdb46f" /> |
+| 许可 | [MIT](LICENSE)（正文与代码同时适用） | [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) |
 
 ---
 
@@ -247,3 +256,4 @@ latexmk 未必能察觉需要重跑，所以 Makefile 里是老老实实跑三�
 
 正文、LaTeX 模板、转换脚本与编译出的 PDF 都在此许可之下：可以自由使用、修改、
 再分发，包括商业用途，只需保留版权声明与许可声明。
+
